@@ -9,7 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const app = express();
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 // Authentication middleware
 function authenticateToken(req, res, next) {
 
@@ -54,14 +54,17 @@ app.use(express.json());
 // Serve frontend files
 app.use(express.static(path.join(__dirname, "..")));
 
-// MySQL connection
+// TiDB MySQL connection
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT || 4000),
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    database: process.env.DB_NAME,
+    ssl: {
+        minVersion: "TLSv1.2"
+    }
 });
-
 // Connect to MySQL
 db.connect((err) => {
     if (err) {
