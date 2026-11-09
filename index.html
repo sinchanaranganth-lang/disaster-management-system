@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Disaster Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Left Side -->
+        <div class="left-section">
+            <div class="overlay">
+
+                <div class="logo">🛡️</div>
+
+                <h1>Disaster Management System</h1>
+
+                <p>
+                    Stay informed. Stay prepared. Stay safe.
+                </p>
+
+                <div class="emergency-box">
+                    <h3>🚨 Emergency Assistance</h3>
+                    <p>
+                        In case of an emergency, contact your local
+                        emergency services immediately.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="right-section">
+
+            <!-- Login Form -->
+            <div class="form-container" id="loginForm">
+
+                <h2>Welcome Back</h2>
+
+                <p class="subtitle">
+                    Login to your disaster management account
+                </p>
+
+                <form onsubmit="loginUser(event)">
+
+                    <label for="loginEmail">Email</label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                    <label for="loginPassword">Password</label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                    <div class="options">
+
+                        <label class="remember">
+                            <input type="checkbox">
+                            Remember me
+                        </label>
+
+                        <a href="#" onclick="forgotPassword()">
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+                    <button type="submit">
+                        Login
+                    </button>
+
+                </form>
+
+                <p class="switch-text">
+                    Don't have an account?
+                    <a href="#" onclick="showRegister()">
+                        Register Now
+                    </a>
+                </p>
+
+            </div>
+
+
+            <!-- Registration Form -->
+            <div class="form-container hidden" id="registerForm">
+
+                <h2>Create Account</h2>
+
+                <p class="subtitle">
+                    Register for the Disaster Management System
+                </p>
+
+                <form onsubmit="registerUser(event)">
+
+                    <label for="name">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                    <label for="email">Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                    <label for="phone">Phone Number</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+                    <label for="role">Select Role</label>
+
+                    <select id="role" required>
+
+                        <option value="">
+                            Select your role
+                        </option>
+
+                        <option value="citizen">
+                            Citizen
+                        </option>
+
+                        <option value="volunteer">
+                            Volunteer
+                        </option>
+
+                        <option value="administrator">
+                            Administrator
+                        </option>
+
+                    </select>
+
+                    <label for="location">Location</label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        placeholder="Enter your location"
+                        required
+                    >
+
+                    <label for="registerPassword">Password</label>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm your password"
+                        required
+                    >
+
+                    <button type="submit">
+                        Create Account
+                    </button>
+
+                </form>
+
+                <p class="switch-text">
+                    Already have an account?
+                    <a href="#" onclick="showLogin()">
+                        Login
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

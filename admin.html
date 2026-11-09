@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Disaster Management</title>
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+<body>
+
+    <h1>🛡️ Disaster Management - Admin Dashboard</h1>
+
+    <p>Welcome, Administrator</p>
+   
+<button onclick="logoutAdmin()">Logout</button>
+
+<!-- Dashboard Statistics -->
+<div class="stats-container">
+
+    <div class="stat-card sos-card">
+        <h3>🚨 Total SOS Alerts</h3>
+        <p id="totalSOSCount">0</p>
+    </div>
+
+    <div class="stat-card active-card">
+        <h3>🔴 Active SOS</h3>
+        <p id="activeSOSCount">0</p>
+    </div>
+
+    <div class="stat-card reports-card">
+        <h3>📋 Disaster Reports</h3>
+        <p id="totalReportsCount">0</p>
+    </div>
+
+    <div class="stat-card users-card">
+        <h3>👥 Registered Users</h3>
+        <p id="totalUsersCount">0</p>
+    </div>
+
+</div>
+
+<hr>
+
+
+    <h2>📋 All Disaster Reports</h2>
+
+    <table border="1">
+
+        <thead>
+            <tr>
+                <th>Report ID</th>
+                <th>User ID</th>
+                <th>Disaster Type</th>
+                <th>Location</th>
+                <th>People Affected</th>
+                <th>Status</th>
+<th>Action</th>
+<th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody id="adminReportsBody">
+            <!-- Reports will appear here -->
+        </tbody>
+
+    </table>
+    
+<hr>
+
+<!-- New SOS Notification -->
+<div id="newSOSNotification" class="new-sos-notification" hidden>
+    🚨 NEW SOS ALERT RECEIVED! Please check the SOS Emergency Alerts section.
+</div>
+
+<h2>🚨 SOS Emergency Alerts</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>SOS ID</th>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Location</th>
+            <th>Message</th>
+            <th>Status</th>
+            <th>Date & Time</th>
+        </tr>
+    </thead>
+    <tbody id="adminSOSBody">
+        <!-- SOS alerts will appear here -->
+    </tbody>
+</table>
+
+<hr>
+
+<h2>👥 All Users</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+
+    <tbody id="adminUsersBody">
+        <!-- Users will appear here -->
+    </tbody>
+</table>
+   <script src="admin.js"></script>
+</body>
+
+</html>

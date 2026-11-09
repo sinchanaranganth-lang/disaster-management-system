@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Disaster Management Dashboard</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+
+    <!-- Leaflet Map CSS -->
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            🛡️
+            <span>Disaster<br>Management</span>
+        </div>
+
+        <nav>
+
+            <a href="#" class="active">
+                🏠 Dashboard
+            </a>
+
+            <a href="#alerts">
+                🚨 Emergency Alerts
+            </a>
+
+            <a href="#report">
+                🆘 Report Disaster
+            </a>
+
+            <a href="#shelters">
+                🏥 Shelters
+            </a>
+
+            <a href="#volunteers">
+                👥 Volunteers
+            </a>
+
+            <a href="#map">
+                🗺️ Disaster Map
+            </a>
+            <a href="#myReports">
+    📋 My Reports
+</a>
+            <a href="#profile">
+                👤 My Profile
+            </a>
+
+        </nav>
+
+        <button class="logout-btn" onclick="logout()">
+            🚪 Logout
+        </button>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+
+            <div>
+                <h1>Dashboard</h1>
+
+                <p>
+                    Disaster Management System
+                </p>
+            </div>
+
+            <div class="user-info">
+
+                <div class="user-icon">
+                    👤
+                </div>
+
+                <div>
+                   <strong id="userName">
+    User
+</strong>
+
+<small id="userRole">
+    Citizen
+</small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+       
+<!-- Welcome -->
+<section class="welcome">
+
+    <div>
+        <h2>
+            Welcome to the Disaster Management System
+        </h2>
+
+        <p>
+            Stay informed and be prepared for emergencies.
+        </p>
+    </div>
+
+    <div class="welcome-actions">
+
+        <span class="status">
+            ● System Online
+        </span>
+
+        <button
+            type="button"
+            class="sos-btn"
+            onclick="activateSOS()">
+
+            🚨 SOS EMERGENCY
+        </button>
+
+    </div>
+
+</section>
+
+
+
+        <!-- Statistics -->
+        <section class="stats">
+
+            <div class="stat-card red">
+
+                <div class="stat-icon">
+                    🚨
+                </div>
+
+                <div>
+                    <h3>5</h3>
+                    <p>Active Alerts</p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card blue">
+
+                <div class="stat-icon">
+                    🏥
+                </div>
+
+                <div>
+                    <h3>12</h3>
+                    <p>Safe Shelters</p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card green">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <div>
+                    <h3>248</h3>
+                    <p>Volunteers</p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card orange">
+
+                <div class="stat-icon">
+                    🆘
+                </div>
+
+                <div>
+                    <h3>23</h3>
+                    <p>Reports Resolved</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Emergency Alerts -->
+        <section class="dashboard-grid" id="alerts">
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>🚨 Emergency Alerts</h2>
+
+                    <button class="small-btn">
+                        View All
+                    </button>
+
+                </div>
+
+
+                <div class="alert danger">
+
+                    <div>
+                        <strong>
+                            Flood Warning
+                        </strong>
+
+                        <p>
+                            Heavy rainfall may cause flooding
+                            in low-lying areas.
+                        </p>
+                    </div>
+
+                    <span>
+                        High
+                    </span>
+
+                </div>
+
+
+                <div class="alert warning">
+
+                    <div>
+                        <strong>
+                            Heavy Rainfall
+                        </strong>
+
+                        <p>
+                            Residents are advised to stay indoors.
+                        </p>
+                    </div>
+
+                    <span>
+                        Medium
+                    </span>
+
+                </div>
+
+
+                <div class="alert info">
+
+                    <div>
+                        <strong>
+                            Weather Update
+                        </strong>
+
+                        <p>
+                            Weather conditions are being monitored.
+                        </p>
+                    </div>
+
+                    <span>
+                        Low
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Quick Actions -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>⚡ Quick Actions</h2>
+
+                </div>
+
+                <div class="quick-actions">
+
+                    <button onclick="reportDisaster()">
+                        🆘
+                        <span>Report Disaster</span>
+                    </button>
+
+                    <button onclick="findShelter()">
+                        🏥
+                        <span>Find Shelter</span>
+                    </button>
+
+                    <button onclick="viewMap()">
+                        🗺️
+                        <span>View Disaster Map</span>
+                    </button>
+
+                    <button onclick="contactEmergency()">
+                        📞
+                        <span>Emergency Contact</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+       <!-- Report Disaster Form -->
+<section class="panel" id="reportForm" style="display: none;">
+
+    <div class="panel-header">
+        <h2>🆘 Report a Disaster</h2>
+    </div>
+
+    <form id="disasterForm">
+
+        <label>Disaster Type</label>
+        <select id="disasterType" required>
+            <option value="">Select Disaster</option>
+            <option value="Flood">Flood</option>
+            <option value="Fire">Fire</option>
+            <option value="Earthquake">Earthquake</option>
+            <option value="Storm">Storm</option>
+            <option value="Landslide">Landslide</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label>Location</label>
+        <input
+            type="text"
+            id="disasterLocation"
+            placeholder="Enter disaster location"
+            required
+        >
+
+        <label>Description</label>
+        <textarea
+            id="disasterDescription"
+            placeholder="Describe what happened"
+            required
+        ></textarea>
+
+        <label>Number of People Affected</label>
+        <input
+            type="number"
+            id="peopleAffected"
+            min="0"
+            placeholder="Enter number"
+            required
+        >
+
+        <button type="submit" class="report-btn">
+            Submit Report
+        </button>
+
+    </form>
+
+</section>
+
+        <!-- Disaster Reports -->
+        <section class="panel reports" id="report">
+
+            <div class="panel-header">
+
+                <h2>🆘 Recent Disaster Reports</h2>
+
+                <button
+                    class="report-btn"
+                    onclick="reportDisaster()">
+
+                    + New Report
+
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Report ID</th>
+                            <th>Type</th>
+                            <th>Location</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>#DM001</td>
+                            <td>Flood</td>
+                            <td>City Center</td>
+                            <td>01 Sep 2026</td>
+
+                            <td>
+                                <span class="badge resolved">
+                                    Resolved
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>#DM002</td>
+                            <td>Fire</td>
+                            <td>Industrial Area</td>
+                            <td>31 Aug 2026</td>
+
+                            <td>
+                                <span class="badge progress">
+                                    In Progress
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>#DM003</td>
+                            <td>Storm</td>
+                            <td>North Zone</td>
+                            <td>30 Aug 2026</td>
+
+                            <td>
+                                <span class="badge pending">
+                                    Pending
+                                </span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+                
+
+
+        <!-- My Reports -->
+        <section class="panel" id="myReports">
+
+            <div class="panel-header">
+                <h2>📋 My Reports</h2>
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Report ID</th>
+                            <th>Type</th>
+                            <th>Location</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="myReportsBody">
+                        <!-- My reports will appear here -->
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+        <!-- My Profile -->
+<section class="panel" id="profile">
+
+    <div class="panel-header">
+        <h2>👤 My Profile</h2>
+    </div>
+
+    <div class="profile-details">
+
+        <p>
+            <strong>Name:</strong>
+            <span id="profileName">Loading...</span>
+        </p>
+
+        <p>
+            <strong>Email:</strong>
+            <span id="profileEmail">Loading...</span>
+        </p>
+
+        <p>
+            <strong>Phone:</strong>
+            <span id="profilePhone">Loading...</span>
+        </p>
+
+        <p>
+            <strong>Role:</strong>
+            <span id="profileRole">Loading...</span>
+        </p>
+
+        <p>
+            <strong>Location:</strong>
+            <span id="profileLocation">Loading...</span>
+        </p>
+
+    </div>
+
+</section>
+
+
+        <!-- Shelters -->
+        <section class="panel" id="shelters">
+
+            <div class="panel-header">
+
+                <h2>🏥 Nearby Safe Shelters</h2>
+
+                <button class="small-btn"
+                        onclick="findShelter()">
+
+                    Find More
+
+                </button>
+
+            </div>
+
+            <div class="shelters">
+
+                <div class="shelter-card">
+
+                    <h3>Community Hall</h3>
+
+                    <p>
+                        📍 2.1 km away
+                    </p>
+
+                    <span class="available">
+                        ● 120 spaces available
+                    </span>
+
+                </div>
+
+
+                <div class="shelter-card">
+
+                    <h3>Government School</h3>
+
+                    <p>
+                        📍 3.5 km away
+                    </p>
+
+                    <span class="available">
+                        ● 85 spaces available
+                    </span>
+
+                </div>
+
+
+                <div class="shelter-card">
+
+                    <h3>Relief Center</h3>
+
+                    <p>
+                        📍 4.2 km away
+                    </p>
+
+                    <span class="available">
+                        ● 60 spaces available
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+        <!-- Disaster Map -->
+<section class="panel" id="map">
+
+    <div class="panel-header">
+        <h2>🗺️ Disaster Map</h2>
+    </div>
+
+    <p>View disaster locations and nearby safe shelters.</p>
+
+    <div id="disasterMap"
+         style="height: 450px; width: 100%; border-radius: 10px; margin-top: 15px;">
+    </div>
+
+    <div style="margin-top: 15px;">
+        🔴 Disaster Location
+        &nbsp;&nbsp;
+        🟢 Safe Shelter
+    </div>
+
+</section>
+
+
+        <!-- Footer -->
+        <footer>
+
+            <p>
+                © 2026 Disaster Management System
+            </p>
+
+            <p>
+                Stay Safe • Stay Prepared • Help Others
+            </p>
+
+        </footer>
+
+    </main>
+
+
+   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="dashboard.js"></script>
+
+</body>
+
+</html>
